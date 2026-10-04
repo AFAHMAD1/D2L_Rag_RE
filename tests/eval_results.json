@@ -1,0 +1,254 @@
+[
+  {
+    "question": "What is broadcasting in tensors?",
+    "type": "normal",
+    "expected_chapter": "Preliminaries",
+    "best_distance": 0.36557793617248535,
+    "chapters_retrieved": [
+      "Preliminaries"
+    ],
+    "retrieved_expected": "yes",
+    "status": "answered",
+    "answer": "Based on the provided sources, broadcasting is a mechanism that allows elementwise binary operations to be performed on two tensors under certain conditions, even when their shapes differ [Source 1]. \n\nIt operates via a two-step procedure:\n1. One or both arrays are expanded by copying elements along axes with length 1 so that both tensors have the same shape [Source 4].\n2. An elementwise operation is performed on the resulting arrays [Source 4]."
+  },
+  {
+    "question": "How do you reshape a tensor in PyTorch?",
+    "type": "normal",
+    "expected_chapter": "Preliminaries",
+    "best_distance": 0.26034921407699585,
+    "chapters_retrieved": [
+      "Preliminaries"
+    ],
+    "retrieved_expected": "yes",
+    "status": "answered",
+    "answer": "Based on the provided sources, you can reshape a tensor without altering its size or values by invoking `reshape` on the tensor (for example, `X = x.reshape(3, 4)`) [Source 2]."
+  },
+  {
+    "question": "What does automatic differentiation compute?",
+    "type": "normal",
+    "expected_chapter": "Preliminaries",
+    "best_distance": 0.24169862270355225,
+    "chapters_retrieved": [
+      "Preliminaries",
+      "Multilayer Perceptrons"
+    ],
+    "retrieved_expected": "yes",
+    "status": "answered",
+    "answer": "Based on the sources, automatic differentiation computes **derivatives** [Source 2, Source 3] and **gradients** (specifically, the gradient of the resulting variable) [Source 1, Source 4]."
+  },
+  {
+    "question": "What is the ReLU activation function?",
+    "type": "normal",
+    "expected_chapter": "Multilayer Perceptrons",
+    "best_distance": 0.30541878938674927,
+    "chapters_retrieved": [
+      "Multilayer Perceptrons"
+    ],
+    "retrieved_expected": "yes",
+    "status": "answered",
+    "answer": "The rectified linear unit (ReLU) is an activation function that provides a simple nonlinear transformation [Source 3] and is piecewise linear [Source 1]. \n\nGiven an element $x$, the function is defined as the maximum of that element and 0: \n$$\\text{ReLU}(x) = \\max(x, 0)$$ [Source 3].\n\nInformally, it retains only positive elements and discards all negative elements by setting the corresponding activations to 0 [Source 1]."
+  },
+  {
+    "question": "Why does dropout help prevent overfitting?",
+    "type": "normal",
+    "expected_chapter": "Multilayer Perceptrons",
+    "best_distance": 0.323076069355011,
+    "chapters_retrieved": [
+      "Multilayer Perceptrons"
+    ],
+    "retrieved_expected": "yes",
+    "status": "answered",
+    "answer": "Based on the provided sources, dropout helps prevent overfitting because overfitting is characterized by \"co-adaptation,\" a state in which each layer relies on a specific pattern of activations in the previous layer [Source 3, Source 4]. Dropout breaks up this co-adaptation by injecting noise and zeroing out a fraction of the nodes in each layer during training [Source 1, Source 4]."
+  },
+  {
+    "question": "What is weight decay (L2 regularization)?",
+    "type": "normal",
+    "expected_chapter": "Multilayer Perceptrons",
+    "best_distance": 0.2607698440551758,
+    "chapters_retrieved": [
+      "Multilayer Perceptrons"
+    ],
+    "retrieved_expected": "yes",
+    "status": "answered",
+    "answer": "Based on the provided sources, weight decay consists of adding a regularization term to the loss function in order to penalize large values of the weights [Source 1]. When it penalizes an $\\ell_2$ weight norm, it is known as ridge regularization or $\\ell_2$ regularization [Source 1, Source 3]. \n\nAdditionally:\n* The (inverse) norm of the parameters represents a useful measure of simplicity [Source 3].\n* It is considered sufficiently restrictive on the values that the weights can take to prevent the model from fitting arbitrary labels [Source 2]."
+  },
+  {
+    "question": "What does a pooling layer do in a CNN?",
+    "type": "normal",
+    "expected_chapter": "Convolutional Neural Networks",
+    "best_distance": 0.31317776441574097,
+    "chapters_retrieved": [
+      "Convolutional Neural Networks"
+    ],
+    "retrieved_expected": "yes",
+    "status": "answered",
+    "answer": "Based on the provided sources, a pooling layer in a CNN:\n\n* **Aggregates information** across adjacent spatial regions [Source 1, Source 4].\n* **Calculates deterministic values**, typically by taking either the maximum value (max-pooling) or the average value (average pooling) of the elements within a pooling window [Source 2]. \n* Serves an idea akin to **downsampling an image** [Source 2]."
+  },
+  {
+    "question": "What is the cross-correlation operation?",
+    "type": "normal",
+    "expected_chapter": "Convolutional Neural Networks",
+    "best_distance": 0.28966331481933594,
+    "chapters_retrieved": [
+      "Convolutional Neural Networks"
+    ],
+    "retrieved_expected": "yes",
+    "status": "answered",
+    "answer": "Based on the sources, the cross-correlation operation is an operation where an input tensor and a kernel tensor are combined to produce an output tensor [Source 4]. \n\nSpecifically, the operation works as follows:\n* **Two-dimensional operation:** The process begins by placing the convolution window at the upper-left corner of the input tensor and sliding it across the input tensor from left to right and top to bottom [Source 1]. At each position, the input subtensor inside that window and the kernel tensor are multiplied elementwise; the resulting tensor is then summed up to yield a single scalar value, which becomes the value of the output tensor at that corresponding location [Source 3].\n* **Multiple channels:** The result on each output channel is calculated from the convolution kernel corresponding to that specific output channel, taking input from all channels in the input tensor [Source 2]."
+  },
+  {
+    "question": "What are padding and stride in a convolution?",
+    "type": "normal",
+    "expected_chapter": "Convolutional Neural Networks",
+    "best_distance": 0.3380718231201172,
+    "chapters_retrieved": [
+      "Convolutional Neural Networks"
+    ],
+    "retrieved_expected": "yes",
+    "status": "answered",
+    "answer": "Based on the provided sources:\n\n* **Padding** involves extending the input image (such as extending it with zeros, with a default value of 0) [Source 4]. It helps address the issue of losing pixels on the perimeter and corners of an image when applying convolutional layers [Source 1], and along with stride, it can be used to adjust the operation to achieve a desired output shape [Source 3].\n* **Stride** refers to horizontal ($s_h$) and vertical ($s_w$) parameters (referred to simply as stride $s$ when they match, with a default value of 1) [Source 4]. It is used to adjust the operation to achieve a desired output shape [Source 3] and can reduce the resolution of the output—for example, reducing the height and width to only $1/n$ of the input for $n > 1$ [Source 4]."
+  },
+  {
+    "question": "What is the difference between SGD and minibatch SGD?",
+    "type": "normal",
+    "expected_chapter": "Optimization Algorithms",
+    "best_distance": 0.35701680183410645,
+    "chapters_retrieved": [
+      "Optimization Algorithms"
+    ],
+    "retrieved_expected": "yes",
+    "status": "answered",
+    "answer": "Based on the sources, the differences between stochastic gradient descent (SGD) and minibatch SGD include:\n\n* **Computation method and batch size:** SGD computes the gradient example by example (a batch size of 1) [Source 2, Source 3], whereas minibatch SGD processes examples in batches (such as a batch size of 10 or 100) [Source 1, Source 3].\n* **Computational efficiency and runtime:** Computing gradients example by example in SGD is less efficient and requires more time per epoch (e.g., 0.685 seconds/epoch for SGD vs. 0.025–0.090 seconds/epoch for minibatch SGD) [Source 2, Source 3]. A minibatch size of 10 is more efficient than SGD [Source 1].\n* **Convergence speed (clock time):** In terms of clock time, minibatch SGD is generally faster than SGD at converging to a smaller risk [Source 4]. \n* **Trade-off:** Minibatch SGD is able to trade off convergence speed and computation efficiency [Source 2]."
+  },
+  {
+    "question": "How does momentum improve gradient descent?",
+    "type": "normal",
+    "expected_chapter": "Optimization Algorithms",
+    "best_distance": 0.2633184790611267,
+    "chapters_retrieved": [
+      "Optimization Algorithms"
+    ],
+    "retrieved_expected": "yes",
+    "status": "answered",
+    "answer": "Based on the provided sources, momentum prevents the stalling of the optimization process, which is much more likely to occur in stochastic gradient descent [Source 1]. It has also long been known to be beneficial in deep learning [Source 2]."
+  },
+  {
+    "question": "What is the Adam optimizer?",
+    "type": "normal",
+    "expected_chapter": "Optimization Algorithms",
+    "best_distance": 0.39763206243515015,
+    "chapters_retrieved": [
+      "Optimization Algorithms"
+    ],
+    "retrieved_expected": "yes",
+    "status": "error",
+    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+  },
+  {
+    "question": "How can I stop my network from memorizing the training data?",
+    "type": "paraphrase",
+    "expected_chapter": "Multilayer Perceptrons",
+    "best_distance": 0.46647417545318604,
+    "chapters_retrieved": [
+      "Optimization Algorithms",
+      "Convolutional Neural Networks",
+      "Multilayer Perceptrons"
+    ],
+    "retrieved_expected": "yes",
+    "status": "error",
+    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+  },
+  {
+    "question": "What's a way to keep a neural network's weights from growing too large?",
+    "type": "paraphrase",
+    "expected_chapter": "Multilayer Perceptrons",
+    "best_distance": 0.5048566460609436,
+    "chapters_retrieved": [
+      "Multilayer Perceptrons",
+      "Convolutional Neural Networks"
+    ],
+    "retrieved_expected": "yes",
+    "status": "error",
+    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+  },
+  {
+    "question": "Why do we slide a small filter over an image instead of connecting every pixel to every neuron?",
+    "type": "paraphrase",
+    "expected_chapter": "Convolutional Neural Networks",
+    "best_distance": 0.47353994846343994,
+    "chapters_retrieved": [
+      "Convolutional Neural Networks"
+    ],
+    "retrieved_expected": "yes",
+    "status": "error",
+    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+  },
+  {
+    "question": "How do convolutional layers reduce the number of parameters compared to an MLP?",
+    "type": "combined",
+    "expected_chapter": [
+      "Convolutional Neural Networks",
+      "Multilayer Perceptrons"
+    ],
+    "best_distance": 0.3340839743614197,
+    "chapters_retrieved": [
+      "Convolutional Neural Networks",
+      "Multilayer Perceptrons"
+    ],
+    "retrieved_expected": "yes",
+    "status": "error",
+    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+  },
+  {
+    "question": "How do the tensor operations from the preliminaries get used when training with minibatch SGD?",
+    "type": "combined",
+    "expected_chapter": [
+      "Preliminaries",
+      "Optimization Algorithms"
+    ],
+    "best_distance": 0.4126128554344177,
+    "chapters_retrieved": [
+      "Optimization Algorithms"
+    ],
+    "retrieved_expected": "no",
+    "status": "error",
+    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+  },
+  {
+    "question": "How does the attention mechanism in transformers work?",
+    "type": "trap",
+    "expected_chapter": null,
+    "best_distance": 0.6515507698059082,
+    "chapters_retrieved": [
+      "Convolutional Neural Networks"
+    ],
+    "retrieved_expected": "n/a",
+    "status": "refused",
+    "answer": "I couldn't find this in the selected D2L chapters."
+  },
+  {
+    "question": "What is an LSTM?",
+    "type": "trap",
+    "expected_chapter": null,
+    "best_distance": 0.594119668006897,
+    "chapters_retrieved": [
+      "Convolutional Neural Networks",
+      "Multilayer Perceptrons"
+    ],
+    "retrieved_expected": "n/a",
+    "status": "error",
+    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+  },
+  {
+    "question": "How does a GAN generator learn to produce realistic images?",
+    "type": "trap",
+    "expected_chapter": null,
+    "best_distance": 0.5871345400810242,
+    "chapters_retrieved": [
+      "Convolutional Neural Networks"
+    ],
+    "retrieved_expected": "n/a",
+    "status": "error",
+    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+  }
+]

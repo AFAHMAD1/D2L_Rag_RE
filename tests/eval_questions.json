@@ -1,0 +1,22 @@
+[
+  {"question": "What is broadcasting in tensors?", "type": "normal", "expected_chapter": "Preliminaries"},
+  {"question": "How do you reshape a tensor in PyTorch?", "type": "normal", "expected_chapter": "Preliminaries"},
+  {"question": "What does automatic differentiation compute?", "type": "normal", "expected_chapter": "Preliminaries"},
+  {"question": "What is the ReLU activation function?", "type": "normal", "expected_chapter": "Multilayer Perceptrons"},
+  {"question": "Why does dropout help prevent overfitting?", "type": "normal", "expected_chapter": "Multilayer Perceptrons"},
+  {"question": "What is weight decay (L2 regularization)?", "type": "normal", "expected_chapter": "Multilayer Perceptrons"},
+  {"question": "What does a pooling layer do in a CNN?", "type": "normal", "expected_chapter": "Convolutional Neural Networks"},
+  {"question": "What is the cross-correlation operation?", "type": "normal", "expected_chapter": "Convolutional Neural Networks"},
+  {"question": "What are padding and stride in a convolution?", "type": "normal", "expected_chapter": "Convolutional Neural Networks"},
+  {"question": "What is the difference between SGD and minibatch SGD?", "type": "normal", "expected_chapter": "Optimization Algorithms"},
+  {"question": "How does momentum improve gradient descent?", "type": "normal", "expected_chapter": "Optimization Algorithms"},
+  {"question": "What is the Adam optimizer?", "type": "normal", "expected_chapter": "Optimization Algorithms"},
+  {"question": "How can I stop my network from memorizing the training data?", "type": "paraphrase", "expected_chapter": "Multilayer Perceptrons"},
+  {"question": "What's a way to keep a neural network's weights from growing too large?", "type": "paraphrase", "expected_chapter": "Multilayer Perceptrons"},
+  {"question": "Why do we slide a small filter over an image instead of connecting every pixel to every neuron?", "type": "paraphrase", "expected_chapter": "Convolutional Neural Networks"},
+  {"question": "How do convolutional layers reduce the number of parameters compared to an MLP?", "type": "combined", "expected_chapter": ["Convolutional Neural Networks", "Multilayer Perceptrons"]},
+  {"question": "How do the tensor operations from the preliminaries get used when training with minibatch SGD?", "type": "combined", "expected_chapter": ["Preliminaries", "Optimization Algorithms"]},
+  {"question": "How does the attention mechanism in transformers work?", "type": "trap", "expected_chapter": null},
+  {"question": "What is an LSTM?", "type": "trap", "expected_chapter": null},
+  {"question": "How does a GAN generator learn to produce realistic images?", "type": "trap", "expected_chapter": null}
+]

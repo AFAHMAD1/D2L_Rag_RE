@@ -1,3 +1,15 @@
 {
-    "python.defaultInterpreterPath": "${workspaceFolder}\\venv\\Scripts\\python.exe"
+    "python.defaultInterpreterPath": "${workspaceFolder}\\venv\\Scripts\\python.exe",
+    "code-runner.executorMap": {
+        "python": ".\\venv\\Scripts\\python.exe -u"
+    },
+    "code-runner.fileDirectoryAsCwd": false,
+    "python.analysis.exclude": ["venv", "chroma_db", "data", "**/__pycache__"],
+    "python.analysis.indexing": false,
+    "python.analysis.diagnosticMode": "openFilesOnly",
+    "files.watcherExclude": {
+        "**/venv/**": true,
+        "**/chroma_db/**": true,
+        "**/data/**": true
+    }
 }

@@ -3,8 +3,12 @@ langchain-community
 langchain-text-splitters
 langchain-chroma
 pypdf
+pymupdf
+pdfplumber
 sentence-transformers
 chromadb
 anthropic
+google-genai
+groq
 python-dotenv
 streamlit
