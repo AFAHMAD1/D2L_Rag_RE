@@ -9,7 +9,7 @@
     ],
     "retrieved_expected": "yes",
     "status": "answered",
-    "answer": "Based on the provided sources, broadcasting is a mechanism that allows elementwise binary operations to be performed on two tensors under certain conditions, even when their shapes differ [Source 1]. \n\nIt operates via a two-step procedure:\n1. One or both arrays are expanded by copying elements along axes with length 1 so that both tensors have the same shape [Source 4].\n2. An elementwise operation is performed on the resulting arrays [Source 4]."
+    "answer": "Broadcasting is a mechanism that lets two tensors of different shapes be used in an element‑wise binary operation. First, the tensors are virtually expanded by copying elements along any axes whose length is 1 so that the tensors attain the same shape. Then the element‑wise operation is performed on these expanded tensors. In effect, a smaller tensor is “replicated” along the mismatched dimensions (e.g., rows or columns) to match the larger tensor before the operation is applied【Source 4】.  \n\nFor example, a \\(3\\times1\\) tensor `a` and a \\(1\\times2\\) tensor `b` are broadcast to a common \\(3\\times2\\) shape, after which `a + b` yields a \\(3\\times2\\) result【Source 3】."
   },
   {
     "question": "How do you reshape a tensor in PyTorch?",
@@ -21,7 +21,7 @@
     ],
     "retrieved_expected": "yes",
     "status": "answered",
-    "answer": "Based on the provided sources, you can reshape a tensor without altering its size or values by invoking `reshape` on the tensor (for example, `X = x.reshape(3, 4)`) [Source 2]."
+    "answer": "In PyTorch you change a tensor’s shape with the `reshape` method. Calling `tensor.reshape(new_shape)` returns a new tensor that has the specified dimensions while keeping the same data and total number of elements.\n\n**Example**\n\n```python\nimport torch\n\n# original 1‑D tensor (vector) with 12 elements\nx = torch.arange(12)          # shape: (12,)\n\n# reshape it into a 3 × 4 matrix\nX = x.reshape(3, 4)           # shape: (3, 4)\n\nprint(X)\n# tensor([[ 0.,  1.,  2.,  3.],\n#         [ 4.,  5.,  6.,  7.],\n#         [ 8.,  9., 10., 11.]])\n```\n\nThe same operation works for higher‑dimensional tensors, e.g.:\n\n```python\nX3 = torch.arange(24).reshape(2, 3, 4)   # shape: (2, 3, 4)\n```\n\nThus, reshaping is performed by invoking the `.reshape()` method with the desired shape [Source 2][Source 3]."
   },
   {
     "question": "What does automatic differentiation compute?",
@@ -34,7 +34,7 @@
     ],
     "retrieved_expected": "yes",
     "status": "answered",
-    "answer": "Based on the sources, automatic differentiation computes **derivatives** [Source 2, Source 3] and **gradients** (specifically, the gradient of the resulting variable) [Source 1, Source 4]."
+    "answer": "Automatic differentiation computes the **gradients (derivatives) of a function** by traversing the computational graph and applying the chain rule backward through the graph. 【Source 1】【Source 2】"
   },
   {
     "question": "What is the ReLU activation function?",
@@ -46,7 +46,7 @@
     ],
     "retrieved_expected": "yes",
     "status": "answered",
-    "answer": "The rectified linear unit (ReLU) is an activation function that provides a simple nonlinear transformation [Source 3] and is piecewise linear [Source 1]. \n\nGiven an element $x$, the function is defined as the maximum of that element and 0: \n$$\\text{ReLU}(x) = \\max(x, 0)$$ [Source 3].\n\nInformally, it retains only positive elements and discards all negative elements by setting the corresponding activations to 0 [Source 1]."
+    "answer": "The ReLU (rectified linear unit) activation function outputs the greater of its input and zero. In other words, for an element \\(x\\),\n\n\\[\n\\text{ReLU}(x)=\\max(x,0),\n\\]\n\nso positive values are passed through unchanged while negative values are set to 0. This makes the function piecewise linear, retaining only the positive elements and discarding (zero‑ing) the negative ones【Source 3】【Source 1】."
   },
   {
     "question": "Why does dropout help prevent overfitting?",
@@ -58,7 +58,7 @@
     ],
     "retrieved_expected": "yes",
     "status": "answered",
-    "answer": "Based on the provided sources, dropout helps prevent overfitting because overfitting is characterized by \"co-adaptation,\" a state in which each layer relies on a specific pattern of activations in the previous layer [Source 3, Source 4]. Dropout breaks up this co-adaptation by injecting noise and zeroing out a fraction of the nodes in each layer during training [Source 1, Source 4]."
+    "answer": "Dropout reduces over‑fitting by forcing the network to stop relying on any one precise pattern of activations.  When a random subset of neurons is “dropped out’’ during each training step, the remaining units can no longer co‑adapt to each other; they must learn to work with many different downstream configurations.  This injected noise breaks the co‑adaptation of features (the authors liken it to how sexual reproduction breaks up co‑adapted genes) and makes the model’s predictions depend on many redundant, robust representations rather than on a fragile, highly tuned set of weights.  As a result, dropout acts as a regularizer that helps avoid over‑fitting [Source 4] and, during training, replaces each activation with a random variable whose expected value equals the original activation, further discouraging the model from memorising the training data [Source 2]."
   },
   {
     "question": "What is weight decay (L2 regularization)?",
@@ -70,7 +70,7 @@
     ],
     "retrieved_expected": "yes",
     "status": "answered",
-    "answer": "Based on the provided sources, weight decay consists of adding a regularization term to the loss function in order to penalize large values of the weights [Source 1]. When it penalizes an $\\ell_2$ weight norm, it is known as ridge regularization or $\\ell_2$ regularization [Source 1, Source 3]. \n\nAdditionally:\n* The (inverse) norm of the parameters represents a useful measure of simplicity [Source 3].\n* It is considered sufficiently restrictive on the values that the weights can take to prevent the model from fitting arbitrary labels [Source 2]."
+    "answer": "Weight decay, also called ℓ₂‑regularization or ridge regularization, is a technique in which a penalty term proportional to the ℓ₂‑norm of the network’s weight parameters is added to the loss function. This extra term discourages large weight values, thereby limiting model complexity and helping prevent over‑fitting [Source 1]."
   },
   {
     "question": "What does a pooling layer do in a CNN?",
@@ -82,7 +82,7 @@
     ],
     "retrieved_expected": "yes",
     "status": "answered",
-    "answer": "Based on the provided sources, a pooling layer in a CNN:\n\n* **Aggregates information** across adjacent spatial regions [Source 1, Source 4].\n* **Calculates deterministic values**, typically by taking either the maximum value (max-pooling) or the average value (average pooling) of the elements within a pooling window [Source 2]. \n* Serves an idea akin to **downsampling an image** [Source 2]."
+    "answer": "A pooling layer **aggregates** the activations in a local spatial region of a feature map, producing a single summary value for that region.  In practice this is done by deterministic operations such as:\n\n* **Maximum pooling** – taking the largest value in each pooling window.  \n* **Average pooling** – taking the mean value in each window, which is essentially a form of down‑sampling an image.\n\nBy applying these operations over adjacent spatial regions, the pooling layer reduces the spatial resolution of the feature maps while retaining the most salient information.  This aggregation helps to make the representation more compact and invariant to small translations.  \n\n**Sources:** [Source 1] describes pooling as “used to aggregate information across adjacent spatial regions.”  [Source 2] explains that pooling “typically [calculates] either the maximum or the average value of the elements in the pooling window… akin to downsampling an image.”  [Source 4] gives an example of “2 × 2 max‑pooling” that “derives … the maximum value in each pooling window.”"
   },
   {
     "question": "What is the cross-correlation operation?",
@@ -94,7 +94,7 @@
     ],
     "retrieved_expected": "yes",
     "status": "answered",
-    "answer": "Based on the sources, the cross-correlation operation is an operation where an input tensor and a kernel tensor are combined to produce an output tensor [Source 4]. \n\nSpecifically, the operation works as follows:\n* **Two-dimensional operation:** The process begins by placing the convolution window at the upper-left corner of the input tensor and sliding it across the input tensor from left to right and top to bottom [Source 1]. At each position, the input subtensor inside that window and the kernel tensor are multiplied elementwise; the resulting tensor is then summed up to yield a single scalar value, which becomes the value of the output tensor at that corresponding location [Source 3].\n* **Multiple channels:** The result on each output channel is calculated from the convolution kernel corresponding to that specific output channel, taking input from all channels in the input tensor [Source 2]."
+    "answer": "The cross‑correlation operation is the basic computation performed by a convolutional layer.  \nIt works as follows:\n\n* A kernel (filter) is placed on the input tensor, starting at the upper‑left corner, and then **slides** across the input from left‑to‑right and top‑to‑bottom [Source 1].  \n* At each position the **overlapping sub‑tensor of the input and the kernel tensor are multiplied element‑wise**, and the resulting values are summed to produce a single scalar [Source 3].  \n* That scalar becomes the value of the **output tensor at the location corresponding to the kernel’s position** [Source 3].  \n* When the data have multiple channels, each **output channel** is computed from its own kernel but takes contributions from **all input channels** [Source 2].  \n\nThus, cross‑correlation is the operation that combines an input tensor with a kernel tensor by sliding the kernel over the input, performing element‑wise multiplication and summation at each location to generate the output tensor [Source 4]."
   },
   {
     "question": "What are padding and stride in a convolution?",
@@ -106,7 +106,7 @@
     ],
     "retrieved_expected": "yes",
     "status": "answered",
-    "answer": "Based on the provided sources:\n\n* **Padding** involves extending the input image (such as extending it with zeros, with a default value of 0) [Source 4]. It helps address the issue of losing pixels on the perimeter and corners of an image when applying convolutional layers [Source 1], and along with stride, it can be used to adjust the operation to achieve a desired output shape [Source 3].\n* **Stride** refers to horizontal ($s_h$) and vertical ($s_w$) parameters (referred to simply as stride $s$ when they match, with a default value of 1) [Source 4]. It is used to adjust the operation to achieve a desired output shape [Source 3] and can reduce the resolution of the output—for example, reducing the height and width to only $1/n$ of the input for $n > 1$ [Source 4]."
+    "answer": "Padding and stride are two key parameters that control how a convolution kernel scans an input image:\n\n* **Padding** – Before the convolution is performed the input image can be extended with extra pixels (usually zeros). This “zero‑padding” prevents loss of information at the image borders and allows the output to keep a desired spatial size. By default the padding is 0, meaning no extra pixels are added, but padding can be set to any value to enlarge the image with zeros [Source 4].\n\n* **Stride** – The stride specifies how many pixels the kernel moves each step when sliding across the image. A horizontal stride \\(s_h\\) and vertical stride \\(s_w\\) determine the step size in each direction; when they are equal we simply speak of stride \\(s\\). Larger strides make the kernel jump farther, reducing the resolution of the output (e.g., an output height/width that is 1⁄\\(n\\) of the input when stride \\(n\\) is used) [Source 4].\n\nTogether, padding and stride determine the spatial dimensions of the convolution’s output and how border pixels are utilized [Source 1, Source 2]."
   },
   {
     "question": "What is the difference between SGD and minibatch SGD?",
@@ -118,7 +118,7 @@
     ],
     "retrieved_expected": "yes",
     "status": "answered",
-    "answer": "Based on the sources, the differences between stochastic gradient descent (SGD) and minibatch SGD include:\n\n* **Computation method and batch size:** SGD computes the gradient example by example (a batch size of 1) [Source 2, Source 3], whereas minibatch SGD processes examples in batches (such as a batch size of 10 or 100) [Source 1, Source 3].\n* **Computational efficiency and runtime:** Computing gradients example by example in SGD is less efficient and requires more time per epoch (e.g., 0.685 seconds/epoch for SGD vs. 0.025–0.090 seconds/epoch for minibatch SGD) [Source 2, Source 3]. A minibatch size of 10 is more efficient than SGD [Source 1].\n* **Convergence speed (clock time):** In terms of clock time, minibatch SGD is generally faster than SGD at converging to a smaller risk [Source 4]. \n* **Trade-off:** Minibatch SGD is able to trade off convergence speed and computation efficiency [Source 2]."
+    "answer": "Stochastic gradient descent (SGD) updates the model after computing the gradient on a **single training example** (batch size = 1) — it therefore makes many very cheap updates but each update requires a separate gradient computation, which can be slower in wall‑clock time even though it processes fewer examples per epoch【Source 3】.  \n\nMini‑batch SGD groups several examples together (e.g., batch sizes of 10, 100, etc.) and computes the gradient on the whole mini‑batch before updating the parameters. This “batching” makes each epoch more computationally efficient and typically reduces the time needed to reach a given loss, while still retaining much of the stochasticity of plain SGD【Source 2】【Source 3】. In short, the difference is the size of the data used per update: SGD = one example per update; minibatch SGD = a small batch (more than one example) per update, which improves runtime efficiency and convergence speed in practice【Source 4】."
   },
   {
     "question": "How does momentum improve gradient descent?",
@@ -130,7 +130,7 @@
     ],
     "retrieved_expected": "yes",
     "status": "answered",
-    "answer": "Based on the provided sources, momentum prevents the stalling of the optimization process, which is much more likely to occur in stochastic gradient descent [Source 1]. It has also long been known to be beneficial in deep learning [Source 2]."
+    "answer": "Momentum improves gradient descent by adding an extra “velocity” term that accumulates past gradients. This accumulated momentum helps the optimizer keep moving in consistent descent directions, which prevents the optimization process from stalling—a problem that occurs frequently with plain stochastic gradient descent [Source 1].  \n\nThe method also gives gradient descent better geometric handling of ill‑conditioned problems, allowing it to traverse narrow valleys more efficiently by smoothing out oscillations and taking larger, more directed steps [Source 2].  \n\nMomentum can be straightforwardly combined with (mini‑batch) stochastic gradient descent; the only modification is that the optimizer maintains an auxiliary velocity variable of the same shape as the gradients [Source 3]. In practice this means the optimizer must store and update this extra state (the velocity) alongside the usual parameters [Source 4].  \n\nOverall, momentum speeds convergence, reduces the chance of getting stuck, and makes gradient descent more robust on difficult loss landscapes."
   },
   {
     "question": "What is the Adam optimizer?",
@@ -141,8 +141,8 @@
       "Optimization Algorithms"
     ],
     "retrieved_expected": "yes",
-    "status": "error",
-    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+    "status": "answered",
+    "answer": "The Adam optimizer is an adaptive‑learning‑rate algorithm widely used for training deep‑learning models. It keeps **exponential weighted moving averages** (also called leaky averages) of both the gradients (the first‑moment estimate) and the squared gradients (the second‑moment estimate) so that each parameter gets its own step size. By combining the momentum idea with the RMSProp‑style variance scaling and an explicit global learning‑rate η, Adam yields a fairly robust update rule that works well in practice. [Source 1] [Source 2] [Source 3] [Source 4]"
   },
   {
     "question": "How can I stop my network from memorizing the training data?",
@@ -155,8 +155,8 @@
       "Multilayer Perceptrons"
     ],
     "retrieved_expected": "yes",
-    "status": "error",
-    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+    "status": "answered",
+    "answer": "You can curb a network’s tendency to “memorize” the training set by changing the training setup rather than by adding new tricks:\n\n* **Start with a very small learning rate (warm‑up).**  \n  Using a tiny learning rate at the beginning keeps the optimizer from jumping to a poor solution and gives the model time to learn general patterns before it can over‑fit the data【Source 1】.\n\n* **Schedule the learning rate downwards as training proceeds.**  \n  After each epoch (or even each minibatch) you can lower the learning‑rate explicitly, which slows down updates later in training and reduces the chance of fitting noise【Source 3】.\n\n* **Reduce the number of training epochs.**  \n  Fewer passes over the data give the model less opportunity to memorize every example【Source 2】.\n\n* **Simplify the architecture.**  \n  Cutting back the number of convolutional or fully‑connected layers (or otherwise making the network shallower) limits its capacity to store every training example, which helps it focus on the underlying patterns【Source 2】.\n\nTogether, a warm‑up with a low initial learning‑rate, a learning‑rate schedule that decays over time, fewer epochs, and a smaller network are the primary levers the cited texts suggest for preventing the network from over‑fitting (i.e., memorizing) the training data."
   },
   {
     "question": "What's a way to keep a neural network's weights from growing too large?",
@@ -168,8 +168,8 @@
       "Convolutional Neural Networks"
     ],
     "retrieved_expected": "yes",
-    "status": "error",
-    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+    "status": "answered",
+    "answer": "One classic method is **early stopping**—instead of directly constraining the weight values, you limit how long the network is trained (i.e., cap the number of training epochs). By stopping training early, the weights are prevented from growing excessively large. [Source 1]"
   },
   {
     "question": "Why do we slide a small filter over an image instead of connecting every pixel to every neuron?",
@@ -180,8 +180,8 @@
       "Convolutional Neural Networks"
     ],
     "retrieved_expected": "yes",
-    "status": "error",
-    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+    "status": "answered",
+    "answer": "We slide a small filter (kernel) across an image rather than connect every pixel to every neuron because the filter acts as a **local receptive field** that captures useful spatial patterns while keeping the network tractable.  \n\n* The text notes that these filters “correspond to receptive fields and feature maps in the brain,” which gives confidence that using local filters is a sound strategy for visual processing and makes it feasible to build deep networks [Source 1].  \n* Moreover, the book points out that “we typically use **small kernels**… One straightforward solution… is to pad a 3 × 3 input…” indicating that small kernels are the norm because they involve only a few pixels at a time, limiting the amount of data lost at each layer and keeping the computation manageable [Source 4].\n\nThus, sliding a small filter lets the model exploit local structure (mirroring biological vision) and avoids the huge parameter and computational burden that would arise if every pixel were directly connected to every neuron."
   },
   {
     "question": "How do convolutional layers reduce the number of parameters compared to an MLP?",
@@ -196,8 +196,8 @@
       "Multilayer Perceptrons"
     ],
     "retrieved_expected": "yes",
-    "status": "error",
-    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+    "status": "answered",
+    "answer": "Convolutional layers keep the parameter count low by **reusing a small set of learnable weights (the convolution kernel or filter) across the whole input map** instead of connecting every input pixel to every neuron as in a fully‑connected (MLP) layer.  \n\n* In a typical MLP an image‑processing layer would need billions of separate weights, but a convolutional layer needs only the weights of the kernel – often just a few hundred – while still preserving the spatial dimensions of the data【Source 3】.  \n* Because the kernel is small (Δ × Δ, with Δ usually < 10), the total number of parameters drops from something like 4 × 10⁶ to 4 Δ², a reduction of about four orders of magnitude【Source 1】.  \n\nThus, weight sharing and the use of compact kernels let convolutional layers dramatically reduce the number of parameters compared with the dense connections of an MLP."
   },
   {
     "question": "How do the tensor operations from the preliminaries get used when training with minibatch SGD?",
@@ -211,8 +211,8 @@
       "Optimization Algorithms"
     ],
     "retrieved_expected": "no",
-    "status": "error",
-    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+    "status": "answered",
+    "answer": "The training loop for minibatch stochastic gradient descent works directly with the tensor‑level primitives introduced earlier.  \n\n* For each parameter `p` the gradient that was accumulated over the current minibatch is stored in the tensor `p.grad`. The update step subtracts a scaled version of this gradient tensor from the parameter tensor with an in‑place subtraction (`p.data.sub_`), which is a basic tensor operation【Source 1】.  \n* After the parameters have been updated, the gradient tensor is cleared with `p.grad.data.zero_()`, another tensor‑level operation that resets the stored gradients for the next minibatch【Source 1】.  \n* The training function also computes the loss for each minibatch and **averages** it over the number of examples in the batch, so the gradient that the optimizer receives does not need to be divided by the batch size later【Source 3】.  \n\nThus, the preliminaries’ tensor operations (in‑place subtraction, zeroing, and averaging) are the building blocks that enable the parameter updates and loss handling in minibatch SGD."
   },
   {
     "question": "How does the attention mechanism in transformers work?",
@@ -236,8 +236,8 @@
       "Multilayer Perceptrons"
     ],
     "retrieved_expected": "n/a",
-    "status": "error",
-    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+    "status": "answered",
+    "answer": "The provided sources do not contain a definition or description of an LSTM. Therefore, I cannot answer the question based on the given material."
   },
   {
     "question": "How does a GAN generator learn to produce realistic images?",
@@ -248,7 +248,7 @@
       "Convolutional Neural Networks"
     ],
     "retrieved_expected": "n/a",
-    "status": "error",
-    "answer": "ERROR: 429 RESOURCE_EXHAUSTED"
+    "status": "answered",
+    "answer": "The provided sources discuss convolutional neural networks, translation invariance, and related concepts, but they do not contain any information about how a GAN (Generative Adversarial Network) generator learns to produce realistic images. Therefore, I cannot answer the question from the given sources."
   }
 ]

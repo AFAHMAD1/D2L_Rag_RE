@@ -10,5 +10,7 @@ chromadb
 anthropic
 google-genai
 groq
+fastapi
+uvicorn
 python-dotenv
 streamlit

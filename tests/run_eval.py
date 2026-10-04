@@ -5,15 +5,13 @@ import time
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from google.genai import errors
-
 from pipeline import DISTANCE_THRESHOLD, answer_question
 from retriever import retrieve
 
 HERE = os.path.dirname(__file__)
 QUESTIONS_PATH = os.path.join(HERE, "eval_questions.json")
 RESULTS_PATH = os.path.join(HERE, "eval_results.json")
-PAUSE_SECONDS = 6
+PAUSE_SECONDS = 10
 TOP_K = 4
 SERVER_ERROR_ATTEMPTS = 3
 SERVER_ERROR_WAIT_SECONDS = 20
@@ -23,10 +21,11 @@ def ask_with_retries(question):
     for attempt in range(1, SERVER_ERROR_ATTEMPTS + 1):
         try:
             return answer_question(question, TOP_K)["answer"], None
-        except errors.APIError as e:
-            if e.code < 500 or attempt == SERVER_ERROR_ATTEMPTS:
-                return None, f"{e.code} {e.status}"
-            print(f"  Server error {e.code}, retrying in {SERVER_ERROR_WAIT_SECONDS}s...")
+        except Exception as e:
+            code = getattr(e, "status_code", None) or getattr(e, "code", None)
+            if not isinstance(code, int) or code < 500 or attempt == SERVER_ERROR_ATTEMPTS:
+                return None, f"{type(e).__name__} {code or ''}".strip()
+            print(f"  Server error {code}, retrying in {SERVER_ERROR_WAIT_SECONDS}s...")
             time.sleep(SERVER_ERROR_WAIT_SECONDS)
 
 

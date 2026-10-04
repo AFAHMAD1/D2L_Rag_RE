@@ -110,7 +110,12 @@ def answer_question(question: str, k: int = 4) -> dict:
     return {
         "answer": answer,
         "sources": [
-            {"chapter": r["chapter"], "page": r["page"], "distance": r["distance"]}
+            {
+                "chapter": r["chapter"],
+                "page": r["page"],
+                "distance": r["distance"],
+                "text": r["text"],
+            }
             for r in results
         ],
     }
